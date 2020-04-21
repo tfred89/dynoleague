@@ -16,17 +16,24 @@ import json
 
 def espn_update():
     year = 2020
-    league_id = 1406490  # fix
-    swid = '{CC3929FE-4B90-497B-87D7-6283A951436F}'  # fix
-    espn_s2 = 'AECMpoZv%2FZF6G9Q1PEU9bnJD2Xf8FJwcFa8voarn81ZyGsMy8BzOpN8M6Wd9dLle3mHCQpW%2F0uQja23BYQagdA9H6tFSbtqGyyg%2BZs3m22Y%2FKNxo7os%2BBNSjX4bKa6UOSBlOph7KwtyMFBe654mVtR4inWzGYrTFVo2RIDk6ueNPFnz%2BDlKaxcQhRniwrEnXhprLfL78Gel1JetARL5lkiqGR2f%2BaPoxq%2Btfb8uj%2BzQAkMEkwJZaoWOUCPfxa7w%2FLa5GVnX5Ca%2F2ZqhFeysjWwOhYflDFnlItB1SKjpWPFtQ2w%3D%3D'  # fix
+    league_id = 935365 
+    swid = '{CC3929FE-4B90-497B-87D7-6283A951436F}'
+    espn_s2 = 'AECzc3DemsoJ5PyewWk65BE%2BWjxjuClSu%2FZJ2iTSvRw97IsbEqSe1qqMBq4KkyiVURjLO7Hrdm7kO0BZgbNWoW3CL%2BwD0ybo66ONErCT8paWqRjhRxv8MgHJZp0eVbJm6oIs4pyCqugJ9KwxuJX5J4iMXIXDDKzlXnJ%2FxxN0SUUWzZuDjv3snuqP45eY6fO5bmfz1ckweC2GFnL5xaWkoWL568GlkdbYoF2Hn9thzFHgB5B%2BCpftNvOs2vaPKEwVg9mUDjnj34ELOKfrAmSWSf49eOIJMp5BHe1VJroEe2VXgw%3D%3D'
     league = League(league_id, year, espn_s2, swid)
-    # insert logic to add teams
+    # insert logic to add teams, owners, players?
 
 
 def sleeper_import():
-    endpoint = "https://api.sleeper.app/v1/players/nfl"
-    payload = requests.get(endpoint)
-    data = json.dumps(payload)  # may need to be json.loads
+    # endpoint = "https://api.sleeper.app/v1/players/nfl"
+    # payload = requests.get(endpoint)
+    # data = json.dumps(payload)  # may need to be json.loads
+    with open('sleeper_data.txt', 'r') as infile:
+        sleeper_data = json.load(infile)
+    for k,v in sleeper_data.items():
+        y = player_import(v)
+        
+
+
     '''
     iterate through and load results
     needed keys:
