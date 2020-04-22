@@ -19,6 +19,7 @@ from league import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('draftpicks', views.DraftPickListView.as_view(), name='picks-list'),
-    path('rosters', views.league_rosters, name='rosters')
+    path('draftpicks', views.draft_pick_list, name='picks-list'),
+    path('rosters', views.league_rosters, name='rosters'),
+    path('', views.home, name='home')
 ]

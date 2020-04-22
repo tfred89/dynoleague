@@ -67,7 +67,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'basic_app.context_processors.add_variable_to_context',
             ],
         },
     },
@@ -83,7 +82,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'dynoleague',
-        'USER':'postgres',
+        'USER':'dynouser',
         'PASSWORD':'dynoleague',
         'HOST':'localhost',
         'PORT':'5432',

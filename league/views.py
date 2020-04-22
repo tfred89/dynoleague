@@ -17,13 +17,17 @@ best way/package to provide tables (preferably sortable)
 
 '''
 
-class DraftPickListView(ListView):
-
-    model = DraftPick
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['draftpicks']
+def draft_pick_list(request):
+    picks = DraftPick.objects.filter(year=2020)
+    
+    context = {
+        'round1': picks.filter(round=1),
+        'round2': picks.filter(round=2),
+        'round3': picks.filter(round=3),
+        'round4': picks.filter(round=4),
+        'round5': picks.filter(round=5)
+        }
+    return render(request, 'league/draftpick_list.html', context)
 
 
 def league_rosters(request):
@@ -31,3 +35,6 @@ def league_rosters(request):
     context = {'owners':owners_list}
 
     return render(request, 'league/rosters.html', context)
+
+def home(request):
+    return render(request, 'league/home.html')

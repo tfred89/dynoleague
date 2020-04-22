@@ -10,8 +10,15 @@ class Owner(models.Model):
         return self.owner_name
 
 
+class FantasyTeam(models.Model):
+    owner = models.ForeignKey(Owner, models.CASCADE, related_name='team')
+    abbrev = models.CharField(max_length=15)
+    name = models.CharField(max_length=50)
+    year = models.IntegerField()
+    division = models.IntegerField()
 
-class PastSeasons(models.Model):
+
+class PastSeason(models.Model):
     year = models.IntegerField()
     place = models.IntegerField()
     team_name = models.CharField(max_length=100, unique=False)
@@ -21,9 +28,6 @@ class PastSeasons(models.Model):
     ties = models.IntegerField()
     points_for = models.FloatField()
     points_against = models.FloatField()
-
-    objects = models.Manager()
-    stats = PastQS.as_manager()
 
 
     def __str__(self):
@@ -78,43 +82,61 @@ class Rankings(models.Model):
 
 
 class NFLPlayer(models.Model):
-    name = models.CharField(max_length=120)
-    team = models.CharField(max_length=120)
-    position = models.CharField(max_length=120)
-    roster = models.ForeignKey('Assets', models.CASCADE, related_name='players')
+    name = models.CharField(max_length=120, blank=True, null=True)
+    team = models.CharField(max_length=120, blank=True, null=True)
+    position = models.CharField(max_length=120, blank=True, null=True)
+    roster = models.ForeignKey('Assets', models.CASCADE, related_name='players', blank=True, null=True)
     taxi = models.BooleanField(default=False)
     rostered = models.BooleanField(default=False)
     tenure = models.IntegerField(blank=True, null=True)
     age = models.IntegerField(blank=True, null=True)
-    height = models.CharField(max_length=6)
-    weight = models.IntegerField()
+    height = models.CharField(max_length=8, blank=True, null=True)
+    weight = models.CharField(max_length=8, blank=True, null=True)
+    espn_id = models.CharField(max_length=125, blank=True, null=True)
+    sleeper_id = models.CharField(max_length=125, blank=True, null=True)
+
+
+    class Meta:
+        ordering = ['position', '-tenure']
 
 
 class DraftPick(models.Model):
     year = models.IntegerField()
     round = models.IntegerField()
     pick = models.IntegerField(blank=True, null=True)  # won't know until after lottery
-    owner =  models.ForeignKey('Assets', models.CASCADE, related_name='picks')
-    trade_history = models.CharField(max_length=140)  # Fix then, want entire chain of pick history
+    owner =  models.ForeignKey('Assets', models.CASCADE, related_name='picks', blank=True, null=True)
+ # Fix then, want entire chain of pick history
 
-    ordering = ['year', 'round', 'pick']
+    class Meta:
+        ordering = ['year', 'round', 'pick']
+
+    def __str__(self):
+        if self.pick:
+            return f"{self.year} Rd {self.round}.{self.pick}"
+        else:
+            return f"{self.year} Rd {self.round}"
     
-    def history(self):
-        return self.picktrade_set().all()  # is .all() needed?
+    # def history(self):
+    #     return self.picktrade_set().all()  # is .all() needed?
 
 
 class PickTrade(models.Model):
     pick = models.ForeignKey(DraftPick, models.CASCADE)
-    traded_from = models.ForeignKey(Owner, models.CASCADE)
-    traded_to = models.ForeignKey(Owner, models.CASCADE)
+    traded_from = models.ForeignKey(Owner, models.CASCADE, related_name='pick_from')
+    traded_to = models.ForeignKey(Owner, models.CASCADE, related_name='pick_to')
     date = models.DateField()  # default = 'now'
 
 
 class Assets(models.Model):
-    manager = models.OneToOneField(Owner, models.CASCADE, required=True)
+    manager = models.OneToOneField(Owner, models.CASCADE)
+
+    def __str__(self):
+        return self.manager.owner_name
 
 
 class LeagueRules(models.Model):
+    number = models.IntegerField()
+    title = models.CharField(max_length=127)
     rule = models.TextField()
 
 '''
