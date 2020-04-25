@@ -11,9 +11,9 @@
     <style media="screen">
       .boxy{
         background: rgb(241, 243, 245);
-        border: 2px solid #171617;
+        border: 1px solid #e9e7e7;
         /* color: #EEF4ED; */
-        padding: 1.5% 1% 1%;
+        padding: 1.5% 1% 1% 1%;
         margin: 4%;
         border-radius: 10px;
       }
@@ -22,10 +22,13 @@
         color: #EEF4ED;
         border-radius: 0px;
       }
-
-      .table{
-        background-color: rgb(241, 241, 241);
+      .newrow{
+        margin-right: 1%;
+      }
+      .roster-table{
+      
         border-radius: 3px;
+        margin-top: 3%;
       }
       th{
         text-align: center;
@@ -34,7 +37,7 @@
         text-align: center;
       }
       body{
-        background-color: rgb(227, 228, 233);
+        background-color: #0f52ba;
       }
       #lineChart{
         background-color: #ffffff;
@@ -68,14 +71,14 @@
         padding-top: 20px;
       }
       .weekly{
-        margin-top: 40px;
+        margin-top: 15px;
       }
       {% block extrastyle %}
       {% endblock %}
     </style>
   </head>
   <body>
-      <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
+      <nav class="navbar sticky-top navbar-expand-md navbar-light bg-light">
         <a class="navbar-brand" href="#">GTBz Dyno</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

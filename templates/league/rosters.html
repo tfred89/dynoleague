@@ -3,13 +3,13 @@
 {% block body_block %}
   <div class="container-fluid text-center">
       
-    <div class="row">
+    <div class="row newrow">
         {% if owners %}
         {% for owner in owners %}
         <div class="col-md">
         <div class="table-responsive boxy weekly">
         <h3>{{ owner.owner_name }}</h3>
-        <table class="table table-sm table-striped table-hover">
+        <table class="table roster-table table-sm table-striped table-hover">
             <thead class="thead-light">
             <tr>
 
