@@ -4,8 +4,8 @@
 {% block body_block %}
 <div id="primary-nav">
   <div class="container-fluid text-center"></div>
-    <div class="row">
-        <div class="col-md">
+    <div class="row newrow">
+        <div class="col-md-8">
         <div class="boxy weekly">
         <h3 style="text-align: center;">Draft Order</h3>
 
@@ -22,11 +22,19 @@
             </thead>
             <tbody>
             {% for pick in round1 %}
+            {% if forloop.last %}
+            <tr class="last-row">
+                <td scope="row">{{ pick.round }}</td>
+                <td scope="row">{{ pick.pick }}</td>
+                <td scope="row">{{ pick.owner.manager.owner_name }}</td>
+            </tr>
+            {% else %}
             <tr>
                 <td scope="row">{{ pick.round }}</td>
                 <td scope="row">{{ pick.pick }}</td>
                 <td scope="row">{{ pick.owner.manager.owner_name }}</td>
             </tr>
+            {% endif %}
             {% endfor %}
 
             </tbody>
@@ -35,92 +43,125 @@
 
 
         <table id="dtBasicExample" class="table table-striped table-hover">
-            
-            <thead class="thead-dark">
-            <tr>
-
-                <th scope="col">Round</th>
-                <th scope="col">Pick</th>
-                <th scope="col">Owner</th>
-            </tr>
-            
-            </thead>
+            <thead class="thead-dark" style="visibility: hidden;">
+                <tr>
+    
+                    <th scope="col">Round</th>
+                    <th scope="col">Pick</th>
+                    <th scope="col">Owner</th>
+                </tr>
+                
+                </thead>
             <tbody>
             {% for pick in round2 %}
+            {% if forloop.last %}
+            <tr class="last-row">
+                <td scope="row">{{ pick.round }}</td>
+                <td scope="row">{{ pick.pick }}</td>
+                <td scope="row">{{ pick.owner.manager.owner_name }}</td>
+            </tr>
+            {% else %}
             <tr>
                 <td scope="row">{{ pick.round }}</td>
                 <td scope="row">{{ pick.pick }}</td>
                 <td scope="row">{{ pick.owner.manager.owner_name }}</td>
             </tr>
+            {% endif %}
             {% endfor %}
 
             </tbody>
 
         </table>
         <table id="dtBasicExample" class="table table-striped table-hover">
+            <thead class="thead-dark" style="visibility: hidden;">
+                <tr>
+    
+                    <th scope="col">Round</th>
+                    <th scope="col">Pick</th>
+                    <th scope="col">Owner</th>
+                </tr>
+                
+                </thead>
+            <tbody>
             
-            <thead class="thead-dark">
-            <tr>
-
-                <th scope="col">Round</th>
-                <th scope="col">Pick</th>
-                <th scope="col">Owner</th>
-            </tr>
-            
-            </thead>
             <tbody>
             {% for pick in round3 %}
+            {% if forloop.last %}
+            <tr class="last-row">
+                <td scope="row">{{ pick.round }}</td>
+                <td scope="row">{{ pick.pick }}</td>
+                <td scope="row">{{ pick.owner.manager.owner_name }}</td>
+            </tr>
+            {% else %}
             <tr>
                 <td scope="row">{{ pick.round }}</td>
                 <td scope="row">{{ pick.pick }}</td>
                 <td scope="row">{{ pick.owner.manager.owner_name }}</td>
             </tr>
+            {% endif %}
             {% endfor %}
 
             </tbody>
 
         </table>
         <table id="dtBasicExample" class="table table-striped table-hover">
-            
-            <thead class="thead-dark">
-            <tr>
-
-                <th scope="col">Round</th>
-                <th scope="col">Pick</th>
-                <th scope="col">Owner</th>
-            </tr>
-            
-            </thead>
+            <thead class="thead-dark" style="visibility: hidden;">
+                <tr>
+    
+                    <th scope="col">Round</th>
+                    <th scope="col">Pick</th>
+                    <th scope="col">Owner</th>
+                </tr>
+                
+                </thead>
+            <tbody>
             <tbody>
             {% for pick in round4 %}
+            {% if forloop.last %}
+            <tr class="last-row">
+                <td scope="row">{{ pick.round }}</td>
+                <td scope="row">{{ pick.pick }}</td>
+                <td scope="row">{{ pick.owner.manager.owner_name }}</td>
+            </tr>
+            {% else %}
             <tr>
                 <td scope="row">{{ pick.round }}</td>
                 <td scope="row">{{ pick.pick }}</td>
                 <td scope="row">{{ pick.owner.manager.owner_name }}</td>
             </tr>
+            {% endif %}
             {% endfor %}
 
             </tbody>
 
         </table>
         <table id="dtBasicExample" class="table table-striped table-hover">
+            <thead class="thead-dark" style="visibility: hidden;">
+                <tr>
+    
+                    <th scope="col">Round</th>
+                    <th scope="col">Pick</th>
+                    <th scope="col">Owner</th>
+                </tr>
+                
+                </thead>
+            <tbody>
             
-            <thead class="thead-dark">
-            <tr>
-
-                <th scope="col">Round</th>
-                <th scope="col">Pick</th>
-                <th scope="col">Owner</th>
-            </tr>
-            
-            </thead>
             <tbody>
             {% for pick in round5 %}
+            {% if forloop.last %}
+            <tr class="last-row">
+                <td scope="row">{{ pick.round }}</td>
+                <td scope="row">{{ pick.pick }}</td>
+                <td scope="row">{{ pick.owner.manager.owner_name }}</td>
+            </tr>
+            {% else %}
             <tr>
                 <td scope="row">{{ pick.round }}</td>
                 <td scope="row">{{ pick.pick }}</td>
                 <td scope="row">{{ pick.owner.manager.owner_name }}</td>
             </tr>
+            {% endif %}
             {% endfor %}
 
             </tbody>
