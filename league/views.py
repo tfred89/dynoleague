@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from league.models import DraftPick, Owner
+from league.models import DraftPick, Owner, LeagueRules
 from django.views.generic.list import ListView
 # Create your views here.
 '''
@@ -38,3 +38,9 @@ def league_rosters(request):
 
 def home(request):
     return render(request, 'league/home.html')
+
+
+def league_rules(request):
+    rule_list = LeagueRules.objects.all()
+    context = {'rules':rule_list}
+    return render(request, 'league/rules.html', context)

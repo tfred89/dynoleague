@@ -8,9 +8,22 @@
         {% for owner in owners %}
         <div class="col-sm-10 col-lg-6 col-xl-4">
         <div class="table-responsive boxy weekly">
-        <h3>{{ owner.owner_name }}</h3>
+        <h3 style="font-weight: 600;">{{ owner.owner_name }}</h3>
+        <hr style="border-color: #14213D; width: 90%;">
+        <div class="roster-info">
+            {% for past in owner.history.all %}
+            <div>
+                <ul style="list-style-type:none;">
+                    <li><b>{{past.year}}</b></li>
+                    <li style="font-size: small;"><b>Place:</b> {{past.place}}</li>
+                    <li style="font-size: small;"><b>Record:</b> {{past.wins}}-{{past.losses}}</li>
+                    <li style="font-size: small;"><b>Pts For:</b> {{past.points_for|floatformat}}</li>    
+                </ul>
+            </div>
+            {% endfor %}
+            </div>
         <table class="table roster-table table-sm table-striped table-hover">
-            <thead class="thead-light">
+            <thead class="thead-custom">
             <tr>
 
                 <th scope="col">Name</th>
@@ -22,7 +35,7 @@
             </thead>
             <tbody>
             {% for player in owner.assets.players.all %}
-            {% if player.position == 'QB' %}
+            <!-- {% if player.position == 'QB' %}
             <tr class="table-success">
             {% elif player.position == 'WR' %}
             <tr class="table-primary">
@@ -32,7 +45,8 @@
             <tr class="table-light">
             {% elif player.position == 'TE' %}
             <tr class="table-danger">
-            {% endif %}
+            {% endif %} -->
+            <tr>
                 <td scope="row">{{ player.name }}</td>
                 <td scope="row">{{ player.position }}</td>
                 <td scope="row">{{ player.team }}</td>
@@ -44,7 +58,7 @@
             </tbody>
         </table>
         <table class="table table-sm table-striped table-hover">
-            <thead class="thead-light">
+            <thead class="thead-custom">
             <h3>Draft Picks</h3>
             <tr>
 
@@ -52,6 +66,7 @@
                 <th scope="col">Round</th>
                 <th scope="col">Pick</th>
             </tr>
+            </thead>
             {% for pick in owner.assets.picks.all %}
             <tr>
                 <td scope="row">{{ pick.year }}</td>

@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('draftpicks', views.draft_pick_list, name='picks-list'),
     path('rosters', views.league_rosters, name='rosters'),
-    path('', views.home, name='home')
+    path('', views.home, name='home'),
+    path('leaguerules', views.league_rules, name='rules'),
 ]

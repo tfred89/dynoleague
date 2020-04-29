@@ -1,11 +1,37 @@
 {% extends "league/base.html" %}
 
 {% block body_block %}
-<div class="jumbotron jumbotron">
+<div class="jumbotron jumbotron-flex">
     <h1 class="display-4">Dyno League!</h1>
     <p class="lead">The champ is here.</p>
     <hr class="my-4">
     <p>Get all your dynasty neads here.</p>
 
-  </div>
+</div>
+<div class="container-fluid">
+    <div class="row" style="background-color: blueviolet; height: 500px;">
+        <div class="col-1 testcol"></div>
+        <div class="col-3">
+            <div class="cool-box">
+                <h4>Test Title</h4>
+                <hr style="border-color: #FCA311;">
+                <h1>201 Days</h1>
+                <hr style="border-color: #FCA311;">
+                <p>And here are some other details about the message</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            <div class="cool-box">
+                <h4>Test Title 2</h4>
+                <hr style="border-color: #FCA311;">
+                <h1>301 Days</h1>
+                <hr style="border-color: #FCA311;">
+                <p>And here are some other details about the message</p>
+            </div>
+        </div>
+    </div>
+</div>
   {% endblock %}

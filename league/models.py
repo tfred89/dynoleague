@@ -22,13 +22,15 @@ class PastSeason(models.Model):
     year = models.IntegerField()
     place = models.IntegerField()
     team_name = models.CharField(max_length=100, unique=False)
-    owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
+    owner = models.ForeignKey(Owner, on_delete=models.CASCADE, related_name='history')
     wins = models.IntegerField()
     losses = models.IntegerField()
     ties = models.IntegerField()
     points_for = models.FloatField()
     points_against = models.FloatField()
 
+    class Meta:
+        ordering = ['year', 'place']
 
     def __str__(self):
         return str(self.year)

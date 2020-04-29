@@ -5,16 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>RSWK Dyno League</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style media="screen">
+      {% comment %}
+      resource: https://www.fantasyfootballdatapros.com/
+      {% endcomment %}
       .boxy{
-        background: #ffffff;
-        border: 2px solid #5C9EAD;
+        background: #FFFFFF;
+        border: 2px solid #FCA311;
         padding: 1.5% 1% 1% 1%;
         margin: 4%;
         border-radius: 10px;
+        font-family: 'IBM Plex Sans', sans-serif;
+
+        color: #14213D;
       }
       .jumbotron {
         background-color: #116894;
@@ -26,11 +33,10 @@
         justify-content: center;
       }
       .last-row {
-        border-bottom: 2px solid black;
+        border-bottom: 1px solid #14213D;
       }
       .roster-table{
         border-radius: 3px;
-        margin-top: 3%;
       }
       th{
         text-align: center;
@@ -38,9 +44,26 @@
       td{
         text-align: center;
       }
+      .thead-custom {
+        background-color: #14213D;
+        color: #E5E5E5;
+        font-family: 'IBM Plex Sans', sans-serif;
 
+        font-weight:600;
+      }
+      .thead-gone {
+        height: 1px;
+        line-height: 1px;
+        visibility: hidden;
+      }
+      .draft-table{
+        margin-top:0em;
+        margin-bottom:0em;
+      }
       body{
-        background-color: #116894;
+        background-color: #E5E5E5;
+        font-family: 'IBM Plex Sans', sans-serif;
+
       }
       #lineChart{
         background-color: #ffffff;
@@ -67,6 +90,19 @@
         margin: 4px;
         border-radius: 3px;
       }
+      .btn-custom {
+        color: #14213D;
+        background-color: #FCA311;
+        border: 1px solid #14213D;
+      }
+      .sidebar-comp {
+        color: #E5E5E5;
+        background-color: #14213D;
+      }
+      .list-group-item.disabled {
+        background-color: #14213D;
+        color: #898989;
+      }
       .rowone{
         padding-bottom: 20px;
       }
@@ -75,21 +111,44 @@
       }
       .weekly{
         margin-top: 30px;
+        padding-top: 1rem;;
       }
       body {
         overflow-x: hidden;
       }
-
+      .roster-info {
+        text-align: left;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 3%;
+      }
+      .cool-box {
+        text-align: center;
+        border: 3px solid #FCA311;
+        border-radius: 5%;
+        margin: 2%;
+        padding: 2%;
+        background-color: #14213D;
+        color:#E5E5E5;
+      }
       #sidebar-wrapper {
         min-height: 100vh;
         margin-left: -15rem;
-        background-color: #eeeeee;
+        background-color: #14213D !important;
+        color: #E5E5E5;
         -webkit-transition: margin .25s ease-out;
         -moz-transition: margin .25s ease-out;
         -o-transition: margin .25s ease-out;
         transition: margin .25s ease-out;
       }
+      .sidebar-heading{
+        color:#FCA311;
+        /* font-family: 'Audiowide', cursive; */
+        font-family: 'Press Start 2P', cursive;
 
+      }
       #sidebar-wrapper .sidebar-heading {
         padding: 0.875rem 1.25rem;
         font-size: 1.2rem;
@@ -163,12 +222,12 @@
           <div class="sidebar-sticky">
           <div class="sidebar-heading">GTBz Dyno</div>
           <div class="list-group list-group-flush">
-            <a href="{% url 'rosters' %}" class="list-group-item list-group-item-action bg-light">Rosters</a>
-            <a href="{% url 'picks-list' %}" class="list-group-item list-group-item-action bg-light">Draft Picks</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light disabled">History</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light disabled">League Rules</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light disabled">Players</a>
-            <a href="#" class="list-group-item list-group-item-action bg-light disabled">Teams</a>
+            <a href="{% url 'rosters' %}" class="list-group-item list-group-item-action sidebar-comp">Rosters</a>
+            <a href="{% url 'picks-list' %}" class="list-group-item list-group-item-action sidebar-comp">Draft Picks</a>
+            <a href="#" class="list-group-item list-group-item-action sidebar-comp disabled">History</a>
+            <a href="{% url 'rules' %}" class="list-group-item list-group-item-action sidebar-comp">League Rules</a>
+            <a href="#" class="list-group-item list-group-item-action sidebar-comp disabled">Players</a>
+            <a href="#" class="list-group-item list-group-item-action sidebar-comp disabled">Teams</a>
           </div>
           </div>
         </div>
@@ -177,9 +236,9 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
     
-          <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+          <nav class="navbar navbar-expand-lg navbar-light border-bottom">
             
-            <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+            <button class="btn btn-custom" id="menu-toggle">Toggle Menu</button>
     
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -208,9 +267,10 @@
             {% block body_block %}
 
             {% endblock %}
-          </div>
+
         <!-- /#page-content-wrapper -->
     
+      </div>
       </div>
       <!-- /#wrapper -->
 
