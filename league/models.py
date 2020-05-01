@@ -141,9 +141,14 @@ class LeagueRules(models.Model):
     title = models.CharField(max_length=127)
     rule = models.TextField()
 
-'''
-Template access:
 
-owner.assets.picks
-owner.assets.players
-'''
+class RuleProposal(models.Model):
+    number = models.IntegerField(null=True, blank=True)
+    name = models.CharField(max_length=127)
+    proposal = models.TextField()
+
+
+class Dates(models.Model):
+    name = models.CharField(max_length=65)
+    date = models.DateTimeField()
+

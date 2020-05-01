@@ -6,12 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>RSWK Dyno League</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    <script src="https://kit.fontawesome.com/61b0c0305c.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style media="screen">
       {% comment %}
       resource: https://www.fantasyfootballdatapros.com/
+      bootstrap icon list:  book --Rules
+                            clipboard --rosters
+                            File ruled --draft picks
+                            Person lines fill --players
+                            history --table
+                            star or person_square --teams
+      sortable tables: https://datatables.net/
       {% endcomment %}
       .boxy{
         background: #FFFFFF;
@@ -37,6 +44,10 @@
       }
       .roster-table{
         border-radius: 3px;
+      }
+      .nav-custom{
+        background-color: #14213D;
+      
       }
       th{
         text-align: center;
@@ -91,9 +102,12 @@
         border-radius: 3px;
       }
       .btn-custom {
-        color: #14213D;
-        background-color: #FCA311;
-        border: 1px solid #14213D;
+        color: #FCA311;
+        background-color: #14213D;
+        border: 2px solid #FCA311;
+        border-radius: 0em;
+        font-weight: 500;
+        font-size: medium; 
       }
       .sidebar-comp {
         color: #E5E5E5;
@@ -145,12 +159,11 @@
       }
       .sidebar-heading{
         color:#FCA311;
-        /* font-family: 'Audiowide', cursive; */
         font-family: 'Press Start 2P', cursive;
-
+        padding: 0.1rem 1.25rem 0.875rem;
+        font-size: 1.2rem;
       }
       #sidebar-wrapper .sidebar-heading {
-        padding: 0.875rem 1.25rem;
         font-size: 1.2rem;
       }
 
@@ -218,11 +231,11 @@
       <div class="d-flex" id="wrapper">
 
         <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="bg-light" id="sidebar-wrapper">
           <div class="sidebar-sticky">
           <div class="sidebar-heading">GTBz Dyno</div>
           <div class="list-group list-group-flush">
-            <a href="{% url 'rosters' %}" class="list-group-item list-group-item-action sidebar-comp">Rosters</a>
+            <a href="{% url 'rosters' %}" class="list-group-item list-group-item-action sidebar-comp"><i class="fas fa-frog"></i>     Rosters</a>
             <a href="{% url 'picks-list' %}" class="list-group-item list-group-item-action sidebar-comp">Draft Picks</a>
             <a href="#" class="list-group-item list-group-item-action sidebar-comp disabled">History</a>
             <a href="{% url 'rules' %}" class="list-group-item list-group-item-action sidebar-comp">League Rules</a>
@@ -236,7 +249,7 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
     
-          <nav class="navbar navbar-expand-lg navbar-light border-bottom">
+          <nav class="navbar navbar-expand-lg navbar-dark border-bottom nav-custom">
             
             <button class="btn btn-custom" id="menu-toggle">Toggle Menu</button>
     
