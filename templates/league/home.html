@@ -1,11 +1,48 @@
 {% extends "league/base.html" %}
+{% load static %}
 
 {% block body_block %}
 <div class="jumbotron jumbotron-flex">
-    <h1 class="display-4">Dyno League!</h1>
-    <p class="lead">The champ is here.</p>
-    <hr class="my-4">
-    <p>Get all your dynasty neads here.</p>
-
+    <h1 class="display-4">Dyno Le4gue</h1>
+    <p class="lead">The champ is here!</p>
+    <hr style="border-color: #FCA311;">
+    <p>As always, read the email. And that email is here. Take a look at current rosters, draft picks, league rules, and past league history.</p>
+</div>
+<div class="container-fluid" style="padding-right: 8%; padding-left: 8%;">
+<div class="row">
+  {% for date in dates %}
+  <div class="col-md-4">
+    <div class="date-box">
+      <span><b>{{ date.name }}</b></span>
+      <h4>{{date.date|timeuntil }}</h4>
+      <hr style="border-color: #FCA311; width: 80%;">
+      
+      <span>Date: {{date.date}}</span>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+  <div class="row justify-content-md-center">
+    <div class="col-md-8">
+      <div class="boxy">
+      <h3 style="text-align: center; font-weight: 600;">Rule Change Proposals</h3>
+      <hr style="border-color: #14213D; width: 90%;">
+      <div style="padding: .5% 1.5%;">
+        <p>Rules changes will be voted on May 8, 2020. If the proposal receives 7 votes, the rule change will go into effect for the 2022 Season. If the vote is unanimous, the rule change will go into effect this season. </p>
+      </div>
+      
+      <table class="table table-striped table-hover">
+        <tbody>
+          {% for rule in props %}
+          <tr>
+            <td scope="row">{{rule.name}}</td>
+            <td scope="row" style="text-align: left;">{{rule.proposal}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
 </div>
   {% endblock %}

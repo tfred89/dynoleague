@@ -1,4 +1,5 @@
 <!-- -------------------------- -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -12,12 +13,6 @@
     <style media="screen">
       {% comment %}
       resource: https://www.fantasyfootballdatapros.com/
-      bootstrap icon list:  book --Rules
-                            clipboard --rosters
-                            File ruled --draft picks
-                            Person lines fill --players
-                            history --table
-                            star or person_square --teams
       sortable tables: https://datatables.net/
       {% endcomment %}
       .boxy{
@@ -27,11 +22,22 @@
         margin: 4%;
         border-radius: 10px;
         font-family: 'IBM Plex Sans', sans-serif;
-
         color: #14213D;
       }
+      .date-box {
+        background-color: #14213D;
+        color: #FFFFFF;
+        border: 2px solid #FCA311;
+        border-radius: 3%;
+        text-align: center;
+        padding: 4% 2%;
+        margin: 2%;
+      }
+      .fas{
+        margin-right: 1rem;
+      }
       .jumbotron {
-        background-color: #116894;
+        background-color: #414D64;
         color: #EEF4ED;
         border-radius: 0px;
       }
@@ -125,8 +131,9 @@
       }
       .weekly{
         margin-top: 30px;
-        padding-top: 1rem;;
+        padding-top: 1rem;
       }
+
       body {
         overflow-x: hidden;
       }
@@ -235,12 +242,12 @@
           <div class="sidebar-sticky">
           <div class="sidebar-heading">GTBz Dyno</div>
           <div class="list-group list-group-flush">
-            <a href="{% url 'rosters' %}" class="list-group-item list-group-item-action sidebar-comp"><i class="fas fa-frog"></i>     Rosters</a>
-            <a href="{% url 'picks-list' %}" class="list-group-item list-group-item-action sidebar-comp">Draft Picks</a>
-            <a href="#" class="list-group-item list-group-item-action sidebar-comp disabled">History</a>
-            <a href="{% url 'rules' %}" class="list-group-item list-group-item-action sidebar-comp">League Rules</a>
-            <a href="#" class="list-group-item list-group-item-action sidebar-comp disabled">Players</a>
-            <a href="#" class="list-group-item list-group-item-action sidebar-comp disabled">Teams</a>
+            <a href="{% url 'rosters' %}" class="list-group-item list-group-item-action sidebar-comp"><i class="fas fa-address-card"></i>Rosters</a>
+            <a href="{% url 'picks-list' %}" class="list-group-item list-group-item-action sidebar-comp"><i class="fas fa-list-ol"></i>Draft Picks</a>
+            <a href="#" class="list-group-item list-group-item-action sidebar-comp disabled"><i class="fas fa-scroll"></i>History</a>
+            <a href="{% url 'rules' %}" class="list-group-item list-group-item-action sidebar-comp"><i class="fas fa-gavel"></i>League Rules</a>
+            <a href="#" class="list-group-item list-group-item-action sidebar-comp disabled"><i class="fas fa-football-ball"></i>NFL Players</a>
+            <a href="#" class="list-group-item list-group-item-action sidebar-comp disabled"><i class="fas fa-user-tie"></i>Teams</a>
           </div>
           </div>
         </div>
@@ -249,7 +256,7 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
     
-          <nav class="navbar navbar-expand-lg navbar-dark border-bottom nav-custom">
+          <nav class="navbar navbar-expand-lg navbar-dark nav-custom">
             
             <button class="btn btn-custom" id="menu-toggle">Toggle Menu</button>
     
@@ -273,19 +280,19 @@
               </ul>
             </div>
           </nav>
-    
-          <div class="container-fluid">
+    <!-- /#page-content-wrapper -->
+          <div class="container-fluid" style="padding: 0px;">
 
 
             {% block body_block %}
 
             {% endblock %}
 
-        <!-- /#page-content-wrapper -->
+        
     
       </div>
       </div>
-      <!-- /#wrapper -->
+
 
 
 

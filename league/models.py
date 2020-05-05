@@ -147,8 +147,18 @@ class RuleProposal(models.Model):
     name = models.CharField(max_length=127)
     proposal = models.TextField()
 
+    class Meta:
+        ordering = ['number',]
+
+    def __str__(self):
+        return self.name
+
 
 class Dates(models.Model):
     name = models.CharField(max_length=65)
     date = models.DateTimeField()
+
+    def __str__(self):
+        return self.name
+    
 

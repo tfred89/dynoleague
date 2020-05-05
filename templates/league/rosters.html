@@ -59,6 +59,23 @@
         </table>
         <table class="table table-sm table-striped table-hover">
             <thead class="thead-custom">
+            <h3>Taxi Squad</h3>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Position</th>
+                <th scope="col">Team</th>
+                <th scope="col">Age</th>
+                <th scope="col">Year</th>
+            </tr>
+            </thead>
+            
+            <tbody>
+                
+            </tbody>
+        </table>
+        <p>Coming Soon...</p>
+        <table class="table table-sm table-striped table-hover">
+            <thead class="thead-custom">
             <h3>Draft Picks</h3>
             <tr>
 
@@ -67,6 +84,7 @@
                 <th scope="col">Pick</th>
             </tr>
             </thead>
+            <tbody>
             {% for pick in owner.assets.picks.all %}
             <tr>
                 <td scope="row">{{ pick.year }}</td>
@@ -75,9 +93,9 @@
             </tr>
             {% endfor %}
             </tbody>
-            </table>
-            </div>
-            </div>
+        </table>
+    </div>
+        </div>
             {% endfor %}
             {% endif %}
             </div>

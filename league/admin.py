@@ -37,4 +37,5 @@ admin.site.register(DraftPick, PickManager)
 admin.site.register(PickTrade)
 admin.site.register(Assets)
 admin.site.register(LeagueRules)
-
+admin.site.register(RuleProposal)
+admin.site.register(Dates)
