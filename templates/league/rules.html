@@ -2,15 +2,27 @@
 
 
 {% block body_block %}
-
-<div class="container">
-    <div class="row">
-        {% for rule in rules %}
-        <div class="col-md-10 boxy weekly">
-            <h3>{{rule.title}}</h3>
-            <p>{{rule.rule}}</p>
+<div class="jumbotron jumbotron-flex" id="rule-jumbo">
+    <h1 class="display-4">The Email</h1>
+    <hr style="border-color: #FCA311;">
+    <p>Read it. Or don't, and be reminded.</p>
+</div>
+<div class="container-fluid">
+    {% for rule in rules %}
+    <div class="row {% cycle 'rule1' 'rule2' %}">
+        
+        <div class="rule-list">
+            <h3 style="width: fit-content;">{{rule.title}}</h3>
+            <hr>
+            <ul>
+                {% for point in rule.rule_split %}
+                <li>{{point}}</li>
+                {% endfor %}
+            </ul>
         </div>
-        {% endfor %}
+        
     </h3>
+</div>
+{% endfor %}
 </div>
 {% endblock %}

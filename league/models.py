@@ -9,6 +9,18 @@ class Owner(models.Model):
     def __str__(self):
         return self.owner_name
 
+    def avg_wins(self):
+        obj = self.history.aggregate(Avg('wins'))
+        return obj.get('wins__avg')
+
+    def avg_place(self):
+        obj = self.history.aggregate(Avg('place'))
+        return obj.get('place__avg')
+
+    def avg_points(self):
+        obj = self.history.aggregate(Avg('points_for'))
+        return obj.get('points_for__avg')
+
 
 class FantasyTeam(models.Model):
     owner = models.ForeignKey(Owner, models.CASCADE, related_name='team')
@@ -141,11 +153,22 @@ class LeagueRules(models.Model):
     title = models.CharField(max_length=127)
     rule = models.TextField()
 
+    def __str__(self):
+        return self.title
+
+    def rule_split(self):
+        points = self.rule.split('--')
+        if points[0] == '':
+            return points[1:]
+        else:
+            return points
+
 
 class RuleProposal(models.Model):
     number = models.IntegerField(null=True, blank=True)
     name = models.CharField(max_length=127)
     proposal = models.TextField()
+
 
     class Meta:
         ordering = ['number',]

@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>RSWK Dyno League</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/61b0c0305c.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style media="screen">
+    <link href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css" rel="stylesheet">
+   <style media="screen">
       {% comment %}
       resource: https://www.fantasyfootballdatapros.com/
       sortable tables: https://datatables.net/
@@ -23,6 +25,7 @@
         border-radius: 10px;
         font-family: 'IBM Plex Sans', sans-serif;
         color: #14213D;
+
       }
       .date-box {
         background-color: #14213D;
@@ -32,6 +35,7 @@
         text-align: center;
         padding: 4% 2%;
         margin: 2%;
+        height: 100%;
       }
       .fas{
         margin-right: 1rem;
@@ -44,6 +48,7 @@
       .newrow{
         margin-right: 1%;
         justify-content: center;
+        margin-bottom: 2%;
       }
       .last-row {
         border-bottom: 1px solid #14213D;
@@ -133,7 +138,29 @@
         margin-top: 30px;
         padding-top: 1rem;
       }
-
+      .rule1 {
+        background-color:#E5E5E5;
+      }
+      .rule2 {
+        background-color: #FFFFFF;
+      }
+      .rule-list{
+        padding: 3% 10% 2% 6%;
+        color:#14213D;
+      }
+      #rule-jumbo{
+        font-family: 'Cinzel', 'serif';
+        font-size: large;
+        text-align: center;
+        margin-bottom: 0em;
+      }
+      #email-btn {
+        color:#14213D;
+        background-color: #FCA311;
+        border: 2px solid #14213D;
+        font-weight: 500;
+        font-size: medium; 
+      }
       body {
         overflow-x: hidden;
       }
@@ -242,9 +269,10 @@
           <div class="sidebar-sticky">
           <div class="sidebar-heading">GTBz Dyno</div>
           <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action sidebar-comp" href="{% url 'home' %}"><i class="fas fa-home"></i>Home</a>
             <a href="{% url 'rosters' %}" class="list-group-item list-group-item-action sidebar-comp"><i class="fas fa-address-card"></i>Rosters</a>
             <a href="{% url 'picks-list' %}" class="list-group-item list-group-item-action sidebar-comp"><i class="fas fa-list-ol"></i>Draft Picks</a>
-            <a href="#" class="list-group-item list-group-item-action sidebar-comp disabled"><i class="fas fa-scroll"></i>History</a>
+            <a href="{% url 'history' %}" class="list-group-item list-group-item-action sidebar-comp"><i class="fas fa-scroll"></i>History</a>
             <a href="{% url 'rules' %}" class="list-group-item list-group-item-action sidebar-comp"><i class="fas fa-gavel"></i>League Rules</a>
             <a href="#" class="list-group-item list-group-item-action sidebar-comp disabled"><i class="fas fa-football-ball"></i>NFL Players</a>
             <a href="#" class="list-group-item list-group-item-action sidebar-comp disabled"><i class="fas fa-user-tie"></i>Teams</a>
@@ -281,7 +309,7 @@
             </div>
           </nav>
     <!-- /#page-content-wrapper -->
-          <div class="container-fluid" style="padding: 0px;">
+          
 
 
             {% block body_block %}
@@ -290,7 +318,7 @@
 
         
     
-      </div>
+  
       </div>
 
 
@@ -302,9 +330,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- works but needs tweaking -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/js/jquery.dataTables.min.js'></script> 
-
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    
     <!-- chart.js cdn -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script>
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js'></script> -->
     <!-- Menu Toggle Script -->
     <script>
       $("#menu-toggle").click(function(e) {

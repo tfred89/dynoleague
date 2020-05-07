@@ -39,12 +39,20 @@ def league_rosters(request):
 def home(request):
     dates = Dates.objects.all()
     new_rules = RuleProposal.objects.all()
+    owners = Owner.objects.all()
     context = {
         'dates':dates,
         'props': new_rules,
+        'owners': owners,
     }
     return render(request, 'league/home.html', context)
 
+def history(request):
+    owners = Owner.objects.all()
+    context = {
+        'owners':owners
+    }
+    return render(request, 'league/history.html', context)
 
 def league_rules(request):
     rule_list = LeagueRules.objects.all()

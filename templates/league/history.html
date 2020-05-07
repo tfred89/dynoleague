@@ -1,0 +1,109 @@
+{% extends "league/base.html" %}
+{% load static %}
+
+{% block body_block %}
+<div class="container-flex" style="padding-right: 12%; padding-left: 12%;">
+    <div class="row">
+        <div class="col-md">
+          <div class="boxy">
+            <h3 style="text-align: center; font-weight: 600;">League Standings</h3>
+            <hr style="border-color: #14213D; width: 90%;">
+            <table class="table table-striped table-hover"
+              id="table"
+              data-toggle="table"
+              data-show-columns="true">
+              <thead class="thead-custom">
+                <tr>
+                  <th scope="col" data-sortable="true">Owner</th>
+                  <th scope="col" data-sortable="true">2017</th>
+                  <th scope="col" data-sortable="true">2018</th>
+                  <th scope="col" data-sortable="true">2019</th>
+                  <th scope="col" data-sortable="true">Average</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for o in owners %}
+                <tr>
+                  <td scope="row">{{ o.owner_name }}</td>
+                  {% for year in o.history.all %}
+                  <td scope="row">{{ year.place }}</td>
+                  {% endfor %}
+                  <td scope="row">{{ o.avg_place|floatformat }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+    
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md">
+          <div class="boxy">
+            <h3 style="text-align: center; font-weight: 600;">League Wins</h3>
+            <hr style="border-color: #14213D; width: 90%;">
+            <table class="table table-striped table-hover"
+              id="table"
+              data-toggle="table"
+              data-show-columns="true">
+              <thead class="thead-custom">
+                <tr>
+                  <th scope="col" data-sortable="true">Owner</th>
+                  <th scope="col" data-sortable="true">2017</th>
+                  <th scope="col" data-sortable="true">2018</th>
+                  <th scope="col" data-sortable="true">2019</th>
+                  <th scope="col" data-sortable="true">Average</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for o in owners %}
+                <tr>
+                  <td scope="row">{{ o.owner_name }}</td>
+                  {% for year in o.history.all %}
+                  <td scope="row">{{ year.wins }}</td>
+                  {% endfor %}
+                  <td scope="row">{{ o.avg_wins|floatformat }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+    
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md">
+          <div class="boxy">
+            <h3 style="text-align: center; font-weight: 600;">League Points Scored</h3>
+            <hr style="border-color: #14213D; width: 90%;">
+            <table class="table table-striped table-hover"
+              id="table"
+              data-toggle="table"
+              data-show-columns="true">
+              <thead class="thead-custom">
+                <tr>
+                  <th scope="col" data-sortable="true">Owner</th>
+                  <th scope="col" data-sortable="true">2017</th>
+                  <th scope="col" data-sortable="true">2018</th>
+                  <th scope="col" data-sortable="true">2019</th>
+                  <th scope="col" data-sortable="true">Average</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for o in owners %}
+                <tr>
+                  <td scope="row">{{ o.owner_name }}</td>
+                  {% for year in o.history.all %}
+                  <td scope="row">{{ year.points_for }}</td>
+                  {% endfor %}
+                  <td scope="row">{{ o.avg_points|floatformat }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+    
+            </table>
+          </div>
+        </div>
+      </div>
+</div>
+{% endblock %}
