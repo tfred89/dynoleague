@@ -25,17 +25,25 @@ class PickManager(admin.ModelAdmin):
     list_display = ['round', 'pick', 'year', 'owner']
 
 
+class RuleManager(admin.ModelAdmin):
+    list_display = ['number', 'title']
+
+
+class PlayerManager(admin.ModelAdmin):
+    list_display = ['name', 'team', 'position', 'rostered']
+    search_fields = ['name', 'team', 'position']
+    list_filter = ['team', 'position', 'rostered']
 
 
 # Register your models here.
 admin.site.register(PastSeason)
 admin.site.register(CurrentSeason)
-admin.site.register(NFLPlayer)
+admin.site.register(NFLPlayer, PlayerManager)
 admin.site.register(Rankings)
 admin.site.register(Owner)
 admin.site.register(DraftPick, PickManager)
 admin.site.register(PickTrade)
 admin.site.register(Assets)
-admin.site.register(LeagueRules)
+admin.site.register(LeagueRules, RuleManager)
 admin.site.register(RuleProposal)
 admin.site.register(Dates)

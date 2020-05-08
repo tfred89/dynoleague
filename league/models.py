@@ -109,6 +109,9 @@ class NFLPlayer(models.Model):
     espn_id = models.CharField(max_length=125, blank=True, null=True)
     sleeper_id = models.CharField(max_length=125, blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+    
 
     class Meta:
         ordering = ['position', '-tenure']
@@ -163,11 +166,15 @@ class LeagueRules(models.Model):
         else:
             return points
 
+    class Meta:
+        ordering = ['number',]
+
 
 class RuleProposal(models.Model):
     number = models.IntegerField(null=True, blank=True)
     name = models.CharField(max_length=127)
     proposal = models.TextField()
+    result = models.CharField(max_length=56, blank=True, null=True)
 
 
     class Meta:

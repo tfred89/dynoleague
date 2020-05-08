@@ -36,6 +36,7 @@
             </thead>
             <tbody>
             {% for player in owner.assets.players.all %}
+            {% if player.taxi is False %}
             <!-- {% if player.position == 'QB' %}
             <tr class="table-success">
             {% elif player.position == 'WR' %}
@@ -54,7 +55,7 @@
                 <td scope="row">{{ player.age }}</td>
                 <td scope="row">{{ player.tenure }}</td>
             </tr>
-
+            {% endif %}
             {% endfor %}
             </tbody>
         </table>
@@ -71,10 +72,20 @@
             </thead>
             
             <tbody>
-                
+                {% for player in owner.assets.players.all %}
+                {% if player.taxi is True %}
+                <tr>
+                    <td scope="row">{{ player.name }}</td>
+                    <td scope="row">{{ player.position }}</td>
+                    <td scope="row">{{ player.team }}</td>
+                    <td scope="row">{{ player.age }}</td>
+                    <td scope="row">{{ player.tenure }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}  
             </tbody>
         </table>
-        <p>Coming Soon...</p>
+
         <table class="table table-sm table-striped table-hover">
             <thead class="thead-custom">
             <h3>Draft Picks</h3>
