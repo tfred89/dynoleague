@@ -23,10 +23,10 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'f4jyt=o4z*krstn$4@4*amvfu6_21gyr87b36cwhq7+7oi^qg4'
+SECRET_KEY = os.environ.get('S_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
 
@@ -129,7 +129,7 @@ STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 django_heroku.settings(locals())
 
