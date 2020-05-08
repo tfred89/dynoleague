@@ -1,1 +1,1 @@
-web: gunicorn RSWKsite.wsgi --log-file -
+web: gunicorn dynoleague.wsgi --log-file -
