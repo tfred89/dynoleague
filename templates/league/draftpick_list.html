@@ -172,7 +172,29 @@
         <div class="col-md-8">
             <div class="boxy weekly">
                 <h3 style="text-align: center; font-weight: 600;">2021 Draft Picks</h3>
-                <span>Draft picks coming soon.</span>
+                <table id="dtBasicExample" class="table table-striped table-hover" style="margin-bottom: 0em;">
+                    
+                    <thead class="thead-custom">
+                    <tr>
+        
+                        <th scope="col">Round</th>
+                        <th scope="col">Pick</th>
+                        <th scope="col">Owner</th>
+                    </tr>
+                    
+                    </thead>
+                    <tbody>
+                    {% for pick in p21 %}
+                    <tr class="last-row">
+                        <td scope="row">{{ pick.round }}</td>
+                        <td scope="row">TBD</td>
+                        <td scope="row">{{ pick.owner.manager.owner_name }}</td>
+                    </tr>
+                    {% endfor %}
+        
+                    </tbody>
+        
+                </table>
             </div>
         </div>
     </div>
