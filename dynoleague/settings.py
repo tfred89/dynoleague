@@ -134,5 +134,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 django_heroku.settings(locals())
 
 
-db_from_env = dj_database_url.config(default='os.environ.get('DATABASE_URL')', conn_max_age=500)
+db_from_env = dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=500)
 DATABASES['default'].update(db_from_env)
