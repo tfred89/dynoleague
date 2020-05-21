@@ -35,8 +35,15 @@ class PlayerManager(admin.ModelAdmin):
     list_filter = ['team', 'position', 'rostered']
 
 
+class PastManager(admin.ModelAdmin):
+    list_display = ['year', 'owner']
+
+
+class DateManager(admin.ModelAdmin):
+    list_display = ['name', 'date']
+
 # Register your models here.
-admin.site.register(PastSeason)
+admin.site.register(PastSeason, PastManager)
 admin.site.register(CurrentSeason)
 admin.site.register(NFLPlayer, PlayerManager)
 admin.site.register(Rankings)
@@ -46,4 +53,4 @@ admin.site.register(PickTrade)
 admin.site.register(Assets)
 admin.site.register(LeagueRules, RuleManager)
 admin.site.register(RuleProposal)
-admin.site.register(Dates)
+admin.site.register(Dates, DateManager)
