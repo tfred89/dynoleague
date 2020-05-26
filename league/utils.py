@@ -5,7 +5,7 @@ import requests
 
 class PlayerUpdater:
 
-    pos = ['WR', 'QB', 'TE', 'K', 'DEF']
+    pos = ['WR', 'QB', 'TE', 'K', 'DEF', 'RB']
     endpoint = "https://api.sleeper.app/v1/players/nfl"
     added = 0
 
