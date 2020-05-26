@@ -1,0 +1,17 @@
+{% extends "league/base.html" %}
+{% load static %}
+
+{% block body_block %}
+<div class="container-fluid" style="padding: 0px;">
+<div class="jumbotron jumbotron-flex">
+
+    <h1 class="display-4">Dyno Le4gue</h1>
+    <p class="lead">The champ is here!</p>
+    <hr style="border-color: #FCA311;">
+    <p>As always, read the email. And that email is here. Take a look at current rosters, draft picks, league rules, and past league history.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" id="email-btn" href="{% url 'rules' %}" role="button"><b>The Email</b></a>
+    </p>
+
+</div></div>
+  {% endblock %}

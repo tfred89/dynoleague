@@ -2,6 +2,7 @@ from django.conf import settings
 import pandas as pd
 '''
 MAKE SURE THE MODEL/TABLE HAS SAME NAMED COLUMNS AS CSV
+TODO: This has never been run or completed, so be sure to double check everything.
 '''
 file = 'ff2019stats.csv'
 

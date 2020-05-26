@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from league.models import DraftPick, Owner, LeagueRules, Dates, RuleProposal
 from django.views.generic.list import ListView
+from league.utils import PlayerUpdater
 # Create your views here.
 '''
 needs:
@@ -16,6 +17,7 @@ questions:
 best way/package to provide tables (preferably sortable)
 
 '''
+
 
 def draft_pick_list(request):
     picks = DraftPick.objects.filter(year=2020)
@@ -37,6 +39,7 @@ def league_rosters(request):
 
     return render(request, 'league/rosters.html', context)
 
+
 def home(request):
     dates = Dates.objects.all()
     new_rules = RuleProposal.objects.all()
@@ -48,6 +51,7 @@ def home(request):
     }
     return render(request, 'league/home.html', context)
 
+
 def history(request):
     owners = Owner.objects.all()
     context = {
@@ -55,7 +59,15 @@ def history(request):
     }
     return render(request, 'league/history.html', context)
 
+
 def league_rules(request):
     rule_list = LeagueRules.objects.all()
     context = {'rules':rule_list}
     return render(request, 'league/rules.html', context)
+
+
+def update_players_view(request):
+    # if request.GET.get('mybtn'):
+    upd = PlayerUpdater()
+    upd.update()
+    return render(request, 'league/update.html')

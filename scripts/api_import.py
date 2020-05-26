@@ -38,7 +38,6 @@ def espn_update():
     print(f'Owner update complete, {count} owners added')
 
 
-
 def player_import(data):
     p_name = data.get('first_name')+' '+ data.get('last_name')
     eid = str(data.get('espn_id'))
@@ -58,7 +57,7 @@ def player_import(data):
 def sleeper_import():
     # endpoint = "https://api.sleeper.app/v1/players/nfl"
     # payload = requests.get(endpoint)
-    # data = json.dumps(payload)  # may need to be json.loads
+    # data = json.loads(payload)  # may need to be json.loads
     with open('sleeper_data.txt', 'r') as infile:
         sleeper_data = json.load(infile)
     count = 0
@@ -98,7 +97,25 @@ def add_picks():
                 'years_exp'
     '''       
 
-
+def player_update(data: dict):
+    pos = ['WR', 'QB', 'TE', 'K', 'DEF']
+    position = data.get('fantasy_positions', ['N'])[0]
+    if position in pos:
+        eid = str(data.get('espn_id'))
+        p_name = data.get('first_name')+' '+ data.get('last_name')
+        p, c = NFLPlayer.objects.get_or_create(espn_id=eid)
+        p.name=p_name
+        p.team=data.get('team')
+        p.position=data.get('position')
+        p.tenure=data.get('years_exp')
+        p.age=data.get('age')
+        p.height=data.get('height')
+        p.weight=data.get('weight')
+        p.espn_id=eid
+        p.sleeper_id=data.get('player_id')
+        p.save()
+    else:
+        pass
 
 if __name__ == '__main__':
     sleeper_import()

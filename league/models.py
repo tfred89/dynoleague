@@ -108,11 +108,11 @@ class NFLPlayer(models.Model):
     weight = models.CharField(max_length=8, blank=True, null=True)
     espn_id = models.CharField(max_length=125, blank=True, null=True)
     sleeper_id = models.CharField(max_length=125, blank=True, null=True)
+    draft_capital = models.OneToOneField('DraftPick', models.CASCADE, related_name='draft_pick', blank=True, null=True)
 
     def __str__(self):
         return self.name
     
-
     class Meta:
         ordering = ['position', '-tenure']
 
