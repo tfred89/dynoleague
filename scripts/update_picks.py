@@ -26,6 +26,7 @@ def create_year(yr, known):
         for pk in range(1,11):
             create_pick(yr, rd, pk, known)
 
+
 if __name__ == '__main__':
     create_year(2019, True)
     create_year(2022, False)

@@ -22,6 +22,7 @@ best way/package to provide tables (preferably sortable)
 def draft_pick_list(request):
     picks = DraftPick.objects.filter(year=2020)
     picks21 = DraftPick.objects.filter(year=2021)
+    picks22 = DraftPick.objects.filter(year=2022)
     context = {
         'round1': picks.filter(round=1),
         'round2': picks.filter(round=2),
@@ -29,6 +30,7 @@ def draft_pick_list(request):
         'round4': picks.filter(round=4),
         'round5': picks.filter(round=5),
         'p21': picks21,
+        'p22': picks22,
         }
     return render(request, 'league/draftpick_list.html', context)
 

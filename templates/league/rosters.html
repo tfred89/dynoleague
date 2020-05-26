@@ -83,7 +83,7 @@
                     <td scope="row">{{ player.team }}</td>
                     <td scope="row">{{ player.age }}</td>
                     <td scope="row">{{ player.tenure }}</td>
-                    <td scope="row">{{ player.draft_capital.round }}</td>
+                    <td scope="row">{{ player.draft_capital.round }}.{{ player.draft_capital.pick }}</td>
                 </tr>
                 {% endif %}
                 {% endif %}
@@ -120,11 +120,13 @@
             </thead>
             <tbody>
             {% for pick in owner.assets.picks.all %}
+            {% if pick.year != 2020 %}
             <tr>
                 <td scope="row">{{ pick.year }}</td>
                 <td scope="row">{{ pick.round }}</td>
                 <td scope="row">{{ pick.pick|default_if_none:"TBD" }}</td>
             </tr>
+            {% endif %}
             {% endfor %}
             </tbody>
         </table>
