@@ -47,7 +47,7 @@ def home(request):
     new_rules = RuleProposal.objects.all()
     owners = Owner.objects.all()
     context = {
-        'dates':dates,
+        'dates': dates,
         'props': new_rules,
         'owners': owners,
     }
@@ -73,3 +73,9 @@ def update_players_view(request):
     upd = PlayerUpdater()
     upd.update()
     return render(request, 'league/update.html')
+
+
+def teams(request, pk):
+    team = Owner.objects.get(pk=pk)
+    context = {'owner': team}
+    return render(request, 'league/team.html', context)

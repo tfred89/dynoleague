@@ -277,7 +277,16 @@
             <a href="{% url 'history' %}" class="list-group-item list-group-item-action sidebar-comp"><i class="fas fa-scroll"></i>History</a>
             <a href="{% url 'rules' %}" class="list-group-item list-group-item-action sidebar-comp"><i class="fas fa-gavel"></i>League Rules</a>
             <a href="#" class="list-group-item list-group-item-action sidebar-comp disabled"><i class="fas fa-football-ball"></i>NFL Players</a>
-            <a href="#" class="list-group-item list-group-item-action sidebar-comp disabled"><i class="fas fa-user-tie"></i>Teams</a>
+            <div class="dropdown">
+              <a class="list-group-item list-group-item-action sidebar-comp dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user-tie"></i>Teams
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {% for o in owner_list %}
+                <a class="dropdown-item" href="{% url 'team' pk=o.pk %}">{{o}}</a>
+                {% endfor %}
+              </div>
+            </div>
           </div>
           </div>
         </div>

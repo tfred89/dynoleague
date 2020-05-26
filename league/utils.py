@@ -1,4 +1,4 @@
-from league.models import NFLPlayer
+from league.models import NFLPlayer, Owner
 import json
 import requests
 
@@ -41,3 +41,8 @@ class PlayerUpdater:
     def update(self):
         for v in self.api_data.values():
             self.update_player(v)
+
+
+def team_name_context(request):
+    owners = Owner.objects.all()
+    return {'owner_list':owners}

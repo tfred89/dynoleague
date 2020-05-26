@@ -25,4 +25,5 @@ urlpatterns = [
     path('leaguerules', views.league_rules, name='rules'),
     path('historyview', views.history, name='history'),
     path('updateplayers', views.update_players_view, name='updater'),
+    path('team/<pk>', views.teams, name='team'),
 ]

@@ -1,0 +1,162 @@
+{% extends "league/base.html" %}
+{% load static %}
+
+{% block body_block %}
+<div class="container-fluid" style="padding: 0px;">
+    <div class="container-fluid text-center">
+        <div class="row newrow">
+            <div class="col-sm-10 col-md-8 col-lg-6 col-xl-4" style="margin-right: 3%; margin-left: 3%;">
+                <div class="table-responsive boxy weekly">
+                <h3 style="font-weight: 600;">{{ owner.owner_name }}</h3>
+                <hr style="border-color: #14213D; width: 90%;">
+            <table class="table roster-table table-sm table-striped table-hover">
+                <thead class="thead-custom">
+                <tr>
+    
+                    <th scope="col">Name</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Team</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Year</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in owner.assets.players.all %}
+                {% if player.taxi is False %}
+                {% if player.position == 'QB' %}
+                <tr class="table-success">
+                {% elif player.position == 'WR' %}
+                <tr class="table-primary">
+                {% elif player.position == 'RB' %}
+                <tr class="table-warning">
+                {% elif player.position == 'K' %}
+                <tr class="table-light">
+                {% elif player.position == 'TE' %}
+                <tr class="table-danger">
+                {% endif %}
+                    <td scope="row">{{ player.name }}</td>
+                    <td scope="row">{{ player.position }}</td>
+                    <td scope="row">{{ player.team }}</td>
+                    <td scope="row">{{ player.age }}</td>
+                    <td scope="row">{{ player.tenure }}</td>
+                    
+                </tr>
+                {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-4">
+        <div class="table-responsive boxy weekly">
+        <h3 style="font-weight: 500;">Past Seasons</h3>
+        <hr style="border-color: #14213D; width: 90%;">
+        <table class="table roster-table table-sm table-hover">
+            <thead class="thead-custom">
+            <tr>
+
+                <th scope="col">Year</th>
+                <th scope="col">Place</th>
+                <th scope="col">Record</th>
+                <th scope="col">Pts For:</th>
+                <th scope="col">Pts Agg:</th>
+            </tr>
+            </thead>
+        
+        <tbody>
+            {% for past in owner.history.all %}
+            <tr>
+                <td><b>{{past.year}}</b></td>
+                <td >{{past.place}}</td>
+                <td >{{past.wins}}-{{past.losses}}</td>
+                <td >{{past.points_for|floatformat}}</td>
+                <td >{{past.points_against|floatformat}}</td>    
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+        
+        </div>
+        
+        <div class="col-8 boxy weekly">
+            <table class="table table-sm table-striped table-hover">
+                <thead class="thead-custom">
+                <h3>Taxi Squad</h3>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Team</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Rd</th>
+                </tr>
+                </thead>
+                
+                <tbody>
+                    {% for player in owner.assets.players.all %}
+                    {% if player.taxi is True %}
+                    {% if player.tenure == 1 %}
+                    <tr>
+                        <td scope="row">{{ player.name }}</td>
+                        <td scope="row">{{ player.position }}</td>
+                        <td scope="row">{{ player.team }}</td>
+                        <td scope="row">{{ player.age }}</td>
+                        <td scope="row">{{ player.tenure }}</td>
+                        <td scope="row">{{ player.draft_capital.round }}.{{ player.draft_capital.pick }}</td>
+                    </tr>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}  
+                </tbody>
+    
+                <tbody>
+                    {% for player in owner.assets.players.all %}
+                    {% if player.taxi is True %}
+                    {% if player.tenure == 0 %}
+                    <tr>
+                        <td scope="row">{{ player.name }}</td>
+                        <td scope="row">{{ player.position }}</td>
+                        <td scope="row">{{ player.team }}</td>
+                        <td scope="row">{{ player.age }}</td>
+                        <td scope="row">{{ player.tenure }}</td>
+                        <td scope="row">{{ player.draft_capital.round }}.{{ player.draft_capital.pick }}</td>
+                    </tr>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}  
+                </tbody>
+            </table>
+        </div>
+        <div class="col-8 boxy weekly">
+            <table class="table table-sm table-striped table-hover">
+                <thead class="thead-custom">
+                <h3>Draft Picks</h3>
+                <tr>
+    
+                    <th scope="col">Year</th>
+                    <th scope="col">Round</th>
+                    <th scope="col">Pick</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for pick in owner.assets.picks.all %}
+                {% if pick.year != 2020 %}
+                <tr>
+                    <td scope="row">{{ pick.year }}</td>
+                    <td scope="row">{{ pick.round }}</td>
+                    <td scope="row">{{ pick.pick|default_if_none:"TBD" }}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+                </tbody>
+            </table></div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}
