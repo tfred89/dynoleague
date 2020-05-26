@@ -54,6 +54,7 @@
                 <td scope="row">{{ player.team }}</td>
                 <td scope="row">{{ player.age }}</td>
                 <td scope="row">{{ player.tenure }}</td>
+                
             </tr>
             {% endif %}
             {% endfor %}
@@ -68,19 +69,40 @@
                 <th scope="col">Team</th>
                 <th scope="col">Age</th>
                 <th scope="col">Year</th>
+                <th scope="col">Rd</th>
             </tr>
             </thead>
             
             <tbody>
                 {% for player in owner.assets.players.all %}
                 {% if player.taxi is True %}
+                {% if player.tenure == 1 %}
                 <tr>
                     <td scope="row">{{ player.name }}</td>
                     <td scope="row">{{ player.position }}</td>
                     <td scope="row">{{ player.team }}</td>
                     <td scope="row">{{ player.age }}</td>
                     <td scope="row">{{ player.tenure }}</td>
+                    <td scope="row">{{ player.draft_capital.round }}</td>
                 </tr>
+                {% endif %}
+                {% endif %}
+                {% endfor %}  
+            </tbody>
+
+            <tbody>
+                {% for player in owner.assets.players.all %}
+                {% if player.taxi is True %}
+                {% if player.tenure == 0 %}
+                <tr>
+                    <td scope="row">{{ player.name }}</td>
+                    <td scope="row">{{ player.position }}</td>
+                    <td scope="row">{{ player.team }}</td>
+                    <td scope="row">{{ player.age }}</td>
+                    <td scope="row">{{ player.tenure }}</td>
+                    <td scope="row">{{ player.draft_capital.round }}.{{ player.draft_capital.pick }}</td>
+                </tr>
+                {% endif %}
                 {% endif %}
                 {% endfor %}  
             </tbody>
