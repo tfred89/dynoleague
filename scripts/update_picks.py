@@ -4,7 +4,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "dynoleague.settings")
 import django
 django.setup()
 
-from league.models import DraftPick
+from league.models import DraftPick, Owner
 
 def create_pick(yr, rd, pk, known):
     if known:
@@ -27,6 +27,20 @@ def create_year(yr, known):
             create_pick(yr, rd, pk, known)
 
 
+def future_picks():
+    owners = Owner.objects.all()
+    for o in owners:
+        assets = o.assets
+        for rd in range(1,6):
+            p, c = DraftPick.objects.get_or_create(
+                year=2022,
+                round=rd,
+                owner=assets,
+            )
+        print(f'round {rd} pick created')
+
+
 if __name__ == '__main__':
-    create_year(2019, True)
-    create_year(2022, False)
+    # create_year(2019, True)
+    # create_year(2022, False)
+    future_picks()
