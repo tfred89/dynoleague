@@ -60,6 +60,7 @@
                 <th scope="col">Place</th>
                 <th scope="col">Record</th>
                 <th scope="col">Pts For:</th>
+                <th scope="col">Lg Avg:</th>
                 <th scope="col">Pts Agg:</th>
             </tr>
             </thead>
@@ -71,7 +72,9 @@
                 <td >{{past.place}}</td>
                 <td >{{past.wins}}-{{past.losses}}</td>
                 <td >{{past.points_for|floatformat}}</td>
-                <td >{{past.points_against|floatformat}}</td>    
+                <td>{{past.league_average|floatformat}}</td>
+                <td >{{past.points_against|floatformat}}</td>
+                <td></td>    
             </tr>
             {% endfor %}
         </tbody>

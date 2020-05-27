@@ -40,6 +40,7 @@ class PastSeason(models.Model):
     ties = models.IntegerField()
     points_for = models.FloatField()
     points_against = models.FloatField()
+    league_average = models.FloatField(blank=True, null=True)
 
     class Meta:
         ordering = ['year', 'place']
@@ -47,7 +48,7 @@ class PastSeason(models.Model):
     def __str__(self):
         return str(self.year)
 
-
+    
 class CurrentSeason(models.Model):
     year = models.IntegerField(blank=True, null=True)
     game_week = models.IntegerField()
